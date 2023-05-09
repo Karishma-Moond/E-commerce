@@ -1,12 +1,31 @@
 import React, { useState } from "react"
 import "./App.css"
-import { BrowserRouter as Router, Switch, Route } from "react-router-dom"
+import '../node_modules/bootstrap/dist/css/bootstrap.min.css'
+
+import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom"
 import Header from "./common/header/Header"
 import Pages from "./pages/Pages"
 import Data from "./components/Data"
 import Cart from "./common/Cart/Cart"
 import Footer from "./common/footer/Footer"
 import Sdata from "./components/shops/Sdata"
+import Login from './components/login.component'
+import SignUp from './components/signup.component'
+// import initializePassport from "../server";
+
+
+
+// import React from 'react';
+// import { Switch, Route } from 'react-router-dom';
+// import Login from './Login';
+// import Logout from './Logout';
+// import Profile from './Profile';
+
+
+
+
+
+
 
 function App() {
   /*
@@ -70,14 +89,64 @@ function App() {
   return (
     <>
       <Router>
+
+       {/* <div className="App">
+       <Switch>
+        <Route path="/login">
+          <Login />
+        </Route>
+        <Route path="/logout">
+          <Logout />
+        </Route>
+        <Route path="/profile">
+          <Profile />
+        </Route>
+       </Switch>
+       </div> */}
+       <div className="App">
+        <nav className="navbar navbar-expand-lg navbar-light fixed-top">
+          <div className="container">
+            <Link className="navbar-brand" to={'/sign-in'}>
+              
+            </Link>
+            <div className="collapse navbar-collapse" id="navbarTogglerDemo02">
+              <ul className="navbar-nav ml-auto">
+                <li className="nav-item">
+                  <Link className="nav-link" to={'/sign-in'}>
+                    Login
+                  </Link>
+                </li>
+                <br></br>
+                <li className="nav-item">
+                  <Link className="nav-link" to={'/sign-up'}>
+                    Sign up
+                  </Link>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </nav>
+
+        <div className="auth-wrapper">
+          <div className="auth-inner">
+            <Switch>
+              <Route exact path="/" element={<Login />} />
+              <Route path="/sign-in" element={<Login />} />
+              <Route path="/sign-up" element={<SignUp />} />
+            </Switch>
+          </div>
+        </div>
+       </div>
+
         <Header CartItem={CartItem} />
         <Switch>
           <Route path='/' exact>
             <Pages productItems={productItems} addToCart={addToCart} shopItems={shopItems} />
           </Route>
-          <Route path='/cart' exact>
+           <Route path='/cart' exact>
             <Cart CartItem={CartItem} addToCart={addToCart} decreaseQty={decreaseQty} />
           </Route>
+
         </Switch>
         <Footer />
       </Router>
